@@ -1,4 +1,4 @@
-import { useAuth } from "@/context/AuthContext";
+import { useAuthContext } from "@/context/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, withRouter } from "next/router";
@@ -6,7 +6,7 @@ import React from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 
 const NavbarComponent = () => {
-  const { user, logout } = useAuth();
+  const { user, logout } = useAuthContext();
   const router = useRouter();
   return (
     <Navbar expand="md" className="navbar bg-dark">

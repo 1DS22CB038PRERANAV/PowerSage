@@ -1,24 +1,21 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useAuth } from "@/context/AuthContext";
+import { useAuthContext } from "@/context/AuthContext";
 
 const Login = () => {
   const router = useRouter();
-  const { user, login } = useAuth();
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
+  const { login } = useAuthContext();
+  const [emailData, setEmailData] = useState();
+  const [passwordData, setPasswordData] = useState();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    console.log(user);
     try {
-      await login(data.email, data.password);
+      await login(emailData,passwordData);
       router.push("/");
     } catch (err) {
+      alert(err.message);
       console.log(err);
     }
   };
@@ -35,13 +32,8 @@ const Login = () => {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
-            onChange={(e) =>
-              setData({
-                ...data,
-                email: e.target.value,
-              })
-            }
-            value={data.email}
+            onChange={(e) => setEmailData(e.target.value)}
+            value={emailData}
             required
             type="email"
             placeholder="Enter email"
@@ -51,13 +43,8 @@ const Login = () => {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            onChange={(e) =>
-              setData({
-                ...data,
-                password: e.target.value,
-              })
-            }
-            value={data.password}
+            onChange={(e) => setPasswordData(e.target.value)}
+            value={passwordData}
             required
             type="password"
             placeholder="Password"

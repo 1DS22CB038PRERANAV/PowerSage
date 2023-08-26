@@ -1,29 +1,23 @@
-import { useAuth } from "@/context/AuthContext";
+import { useAuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
 const Signup = () => {
-  const { user, signup } = useAuth();
+  const { signup } = useAuthContext();
   const route = useRouter();
-  console.log(user);
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-    displayName: "",
-  });
+  const [emailData, setEmailData] = useState();
+  const [passwordData, setPasswordData] = useState();
+  const [displayName, setDisplayName] = useState();
 
-  const [errorMessage, setErrorMessage] = useState("")
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await signup(data.email, data.password, data.displayName);
+      await signup(emailData,passwordData,displayName);
       route.push("/");
     } catch (err) {
       console.log(err);
-      setErrorMessage(err)
     }
-    console.log(data);
   };
 
   return (
@@ -41,13 +35,8 @@ const Signup = () => {
             type="text"
             placeholder="Enter your name"
             required
-            onChange={(e) =>
-              setData({
-                ...data,
-                displayName: e.target.value,
-              })
-            }
-            value={data.displayName}
+            onChange={(e) => setDisplayName(e.target.value)}
+            value={displayName}
           />
         </Form.Group>
 
@@ -57,13 +46,8 @@ const Signup = () => {
             type="email"
             placeholder="Enter your email"
             required
-            onChange={(e) =>
-              setData({
-                ...data,
-                email: e.target.value,
-              })
-            }
-            value={data.email}
+            onChange={(e) => setEmailData(e.target.value)}
+            value={emailData}
           />
         </Form.Group>
 
@@ -73,13 +57,8 @@ const Signup = () => {
             type="password"
             placeholder="Password"
             required
-            onChange={(e) =>
-              setData({
-                ...data,
-                password: e.target.value,
-              })
-            }
-            value={data.password}
+            onChange={(e) => setPasswordData(e.target.value)}
+            value={passwordData}
           />
         </Form.Group>
 
