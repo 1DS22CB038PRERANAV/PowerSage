@@ -1,4 +1,3 @@
-import { auth } from "@/config/firebase";
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
@@ -52,7 +51,7 @@ const NavbarComponent = () => {
           <Nav>
             {user ? (
               <>
-                <Navbar.Text className="text-white">{`User : ${auth.currentUser.displayName}`}</Navbar.Text>
+                <Navbar.Text className="text-white">{`User : ${user.displayName}`}</Navbar.Text>
                 <Button
                   variant="outline-danger"
                   size="sm"

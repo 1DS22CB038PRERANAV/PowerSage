@@ -7,7 +7,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "@/config/firebase";
-
+// Creating Context
 const AuthContext = createContext({});
 
 export const useAuth = () => useContext(AuthContext);
@@ -22,7 +22,7 @@ export const AuthContextProvider = ({ children }) => {
         setUser({
           uid: user.uid,
           email: user.email,
-          displayName: user.displayName,
+          displayName: auth.currentUser.displayName,
         });
       } else {
         setUser(null);
