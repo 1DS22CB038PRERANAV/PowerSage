@@ -1,4 +1,5 @@
-import Head from 'next/head'
+import Head from "next/head";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -10,8 +11,82 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <section>Hero Section</section>
+        <div className="container mt-5">
+          <div className="jumbotron mb-5">
+            <h1 className="display-4 fw-bold">Welcome to PowerSage</h1>
+            <p className="lead">
+              Are you curious about how much energy your household appliances
+              are consuming? Look no further! PowerSage is your go-to tool for
+              calculating and visualizing energy consumption. Our user-friendly
+              app helps you understand and manage your energy usage effectively.
+            </p>
+            <hr className="my-4" />
+            <div>
+              <strong>Features:</strong>
+              <ul>
+                <li>Easy-to-Use Interface</li>
+                <li>Appliance Database</li>
+                <li>Accurate Calculations</li>
+                <li>Interactive Graphs</li>
+                <li>Recommendations for Saving Electricity</li>
+              </ul>
+            </div>
+            <Link href="/signup" passHref legacyBehavior>
+              <a className="btn btn-primary btn-sm">Get Started Now</a>
+            </Link>
+          </div>
+
+          <div className="row">
+            <div className="col-md-6">
+              <h2>How It Works</h2>
+              <p>
+                <strong>Input Appliance Data:</strong> Select an appliance from
+                our database or add a custom appliance. Provide details like
+                power rating (in watts) and average usage time.
+              </p>
+              <p>
+                <strong>Calculate Consumption:</strong> Our calculator instantly
+                computes the energy consumed by the appliance based on the
+                provided information.
+              </p>
+            </div>
+            <div className="col-md-6">
+              <h2>Graphical Insights</h2>
+              <p>
+                Explore graphical representations of your energy consumption
+                over time. Identify peak usage periods and monitor changes in
+                your consumption patterns.
+              </p>
+              <p>
+                <strong>Take Action:</strong> Armed with valuable insights, make
+                informed decisions to reduce energy usage, cut down on utility
+                bills, and contribute to a greener planet.
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center mt-5">
+            <h2>Why Choose PowerSage</h2>
+            <p>
+              <strong>Empowerment:</strong> Take control of your energy usage by
+              understanding where it&apos;s being consumed the most.
+            </p>
+            <p>
+              <strong>Savings:</strong> Uncover opportunities to reduce energy
+              wastage and save money on your electricity bills.
+            </p>
+            <p>
+              <strong>Environmental Impact:</strong> Play your part in reducing
+              carbon emissions by optimizing your energy consumption.
+            </p>
+            <p>
+              <strong>User-Friendly:</strong> Our app is designed with you in
+              mind. No complex calculations or confusing graphs - just
+              straightforward insights.
+            </p>
+          </div>
+        </div>
       </main>
     </>
-  )
+  );
 }
