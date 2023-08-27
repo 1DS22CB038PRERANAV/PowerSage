@@ -5,7 +5,7 @@ import {
   LAUNDRY_APPLIANCES_DATA,
   OTHER_APPLIANCES_DATA,
 } from "@/data/appliancesData";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 
 const Calculate = () => {
@@ -76,9 +76,45 @@ const Calculate = () => {
 
   console.log("DHFIDBVKDF", appliances);
   return (
-    <div className="m-auto">
-      <Form onSubmit={handleSubmit}>
-        <Row>
+    <div className="m-auto mb-4">
+      <div className="mb-4">
+        <h1 className="m-4">Household Energy Consumption Calculator</h1>
+        <h4 className="m-4">Steps to Calculate</h4>
+        <ol>
+          <li className="mb-3">
+            Input the details for each appliance: Appliance Name, Quantity,
+            Watts, and Hours Used.
+          </li>
+
+          <li className="mb-3">
+            The energy consumption for each appliance will be calculated and
+            displayed in the &quot;Consumption&quot; column.
+          </li>
+
+          <li className="mb-3">
+            You can add more appliances by clicking the &quot;Add
+            Appliance&quot; button.
+          </li>
+
+          <li className="mb-3">
+            To delete an appliance, click the &quot;Delete&quot; button next to
+            it.
+          </li>
+
+          <li className="mb-3">
+            Once you&apos;ve entered details for all appliances, click the
+            &quot;Calculate Total Consumption&quot; button.
+          </li>
+
+          <li className="mb-3">
+            The total energy consumed by all appliances will be displayed at the
+            bottom of the form after submission.
+          </li>
+        </ol>
+      </div>
+      <h3 className="m-4">Calculator</h3>
+      <Form onSubmit={handleSubmit} className="m-4">
+        <Row className="fw-bold">
           <Col>Appliance Name</Col>
           <Col>Quantity</Col>
           <Col>Watts</Col>
