@@ -117,9 +117,9 @@ const Calculate = () => {
           <Col>Appliance Name</Col>
           <Col>Quantity</Col>
           <Col>Watts</Col>
-          <Col>Hours Used</Col>
+          <Col>Hours Used Per Day</Col>
           <Col>Action</Col>
-          <Col>Consumption</Col>
+          <Col>Consumption Per Day</Col>
         </Row>
         {appliances.map((appliance) => (
           <div key={appliance.id} className="mt-2 mb-2">
