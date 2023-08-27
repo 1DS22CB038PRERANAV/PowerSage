@@ -213,6 +213,7 @@ const Calculate = () => {
                 <Button
                   variant="danger"
                   onClick={() => deleteAppliance(appliance.id)}
+                  disabled={appliances.length === 1}
                 >
                   Delete
                 </Button>
