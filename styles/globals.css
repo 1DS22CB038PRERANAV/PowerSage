@@ -16,3 +16,11 @@ footer ul {
   list-style-type: none;
   padding-left: 0;
 }
+
+.categoryOption {
+  height: 40px;
+  background-color: darkgrey;
+  font-size: medium;
+  font-weight: 600;
+  color: black;
+}
