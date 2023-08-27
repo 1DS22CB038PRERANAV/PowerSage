@@ -1,7 +1,10 @@
+import CarouselComponent from "@/components/Carousel";
+import { useAuthContext } from "@/context/AuthContext";
 import Head from "next/head";
 import Link from "next/link";
 
 export default function Home() {
+  const { user } = useAuthContext();
   return (
     <>
       <Head>
@@ -31,12 +34,16 @@ export default function Home() {
                 <li>Recommendations for Saving Electricity</li>
               </ul>
             </div>
-            <Link href="/signup" passHref legacyBehavior>
-              <a className="btn btn-primary btn-sm">Get Started Now</a>
-            </Link>
+            {!user && (
+              <Link href="/signup" passHref legacyBehavior>
+                <a className="btn btn-primary btn-sm">Get Started Now</a>
+              </Link>
+            )}
           </div>
-
-          <div className="row">
+          <div>
+            <CarouselComponent />
+          </div>
+          <div className="row mt-4">
             <div className="col-md-6">
               <h2>How It Works</h2>
               <p>

@@ -39,12 +39,12 @@ const NavbarComponent = () => {
             </Link>
             <Link href="/calculate" className="text-decoration-none" passHref>
               <Nav.Link as="span" className="text-white text-decoration-none">
-                Calculate
+                Calculator
               </Nav.Link>
             </Link>
             <Link href="/graphs" className="text-decoration-none" passHref>
               <Nav.Link as="span" className="text-white text-decoration-none">
-                Graphs
+                Graphical Insights
               </Nav.Link>
             </Link>
           </Nav>

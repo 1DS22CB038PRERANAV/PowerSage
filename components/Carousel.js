@@ -1,35 +1,32 @@
-import { Image } from 'react-bootstrap';
-import Carousel from 'react-bootstrap/Carousel';
+import { Image } from "react-bootstrap";
+import Carousel from "react-bootstrap/Carousel";
 
-
-function UncontrolledExample() {
+function CarouselComponent() {
   return (
-    <Carousel>
+    <Carousel style={{width: '75%', margin: 'auto'}}>
       <Carousel.Item>
-        <Image src='' alt="First slide" />
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
+        <Image
+          src="assets/3d-rendering-modern-dining-room-living-room-with-luxury-decor.jpg"
+          alt="First slide"
+          fluid
+        />
       </Carousel.Item>
       <Carousel.Item>
-        <Image src='' alt="Second slide" />
-        <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
+        <Image
+          src="assets/bar-concept.jpg"
+          alt="Second slide"
+          fluid
+        />
       </Carousel.Item>
       <Carousel.Item>
-        <Image src='' alt="Third slide" />
-        <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
+        <Image
+          src="assets/beautiful-shot-modern-house-kitchen.jpg"
+          alt="Third slide"
+          fluid
+        />
       </Carousel.Item>
     </Carousel>
   );
 }
 
-export default UncontrolledExample;
+export default CarouselComponent;
