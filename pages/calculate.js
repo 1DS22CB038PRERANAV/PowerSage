@@ -38,18 +38,18 @@ const Calculate = () => {
   const addAppliance = () => {
     const newAppliance = {
       id: Date.now(),
+      category: "",
       applianceName: "",
       quantity: "",
       watts: "",
       hoursUsed: "",
+      energyConsumed: "",
     };
     setAppliances([...appliances, newAppliance]);
   };
 
   const deleteAppliance = (id) => {
-    const updatedAppliances = appliances.filter(
-      (appliance) => appliance.id !== id
-    );
+    const updatedAppliances = appliances.filter((item) => item.id !== id);
     setAppliances(updatedAppliances);
   };
 
@@ -74,7 +74,6 @@ const Calculate = () => {
     // Handle form submission logic here
   };
 
-  console.log("DHFIDBVKDF", appliances);
   return (
     <div className="m-auto mb-4">
       <div className="mb-4">
@@ -130,7 +129,6 @@ const Calculate = () => {
                 <Form.Group controlId={"applianceName" + appliance.id}>
                   <Form.Control
                     as="select"
-                    placeholder="Select Appliance"
                     value={appliance.applianceName}
                     onChange={(e) =>
                       setAppliances((prevState) =>
@@ -155,6 +153,7 @@ const Calculate = () => {
                       )
                     }
                   >
+                    {/* Creating Dropdown Options */}
                     <>
                       <option>Select Appliance</option>
                       {categoryDropData.map((categoryItem) => (
@@ -260,12 +259,7 @@ const Calculate = () => {
                   <Form.Control
                     disabled
                     type="text"
-                    value={`${calculateEnergyConsumption(
-                      appliance.watts,
-                      appliance.quantity,
-                      appliance.hoursUsed,
-                      appliance.id
-                    )} kWh`}
+                    value={`${appliance.energyConsumed} kWh`}
                   />
                 </Form.Group>
               </Col>
