@@ -6,12 +6,16 @@ import {
   OTHER_APPLIANCES_DATA,
 } from "@/data/appliancesData";
 import React, { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Collapse, Form, Row } from "react-bootstrap";
+import { auth } from "@/utils/firebase";
+import { addEnergyConsumptionData } from "@/utils/databaseRelated";
 
 const Calculate = () => {
+  const [open, setOpen] = useState(false);
+  const [finalData, setFinalData] = useState();
   const [appliances, setAppliances] = useState([
     {
-      id: 1,
+      id: Date.now(),
       category: "",
       applianceName: "",
       quantity: "",
@@ -61,17 +65,25 @@ const Calculate = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const currentDate = new Date();
+    // Calculating Total energy consumed per day here
+    const totalEnergy = appliances.reduce(
+      (total, appliance) => total + appliance.energyConsumed,
+      0
+    );
+    // Creating a structure of Data that is stored in
     const dataRequired = {
-      timestamp: currentDate,
+      timestamp: Date.now(),
       date: currentDate.getDate(),
       month: currentDate.getMonth(),
       year: currentDate.getFullYear(),
-      totalEnergyConsumed: energyConsumptionData.reduce(
-        (total, appliance) => total + appliance.energyConsumed,
-        0
-      ),
+      totalEnergyConsumedPerDay: Number(totalEnergy).toFixed(2),
+      totalEnergyConsumedPerMonth: Number(totalEnergy * 30).toFixed(2),
+      totalEnergyConsumedPerYear: Number(totalEnergy * 365).toFixed(2),
+      energyConsumedData: appliances,
     };
-    // Handle form submission logic here
+    setFinalData(dataRequired);
+    setOpen(true);
+    addEnergyConsumptionData(auth.currentUser.uid, dataRequired);
   };
 
   return (
@@ -112,7 +124,11 @@ const Calculate = () => {
         </ol>
       </div>
       <h3 className="m-4">Calculator</h3>
-      <Form onSubmit={handleSubmit} className="m-4">
+      <Form
+        onSubmit={handleSubmit}
+        onFocus={() => setOpen(false)}
+        className="m-4"
+      >
         <Row className="fw-bold">
           <Col>Appliance Name</Col>
           <Col>Quantity</Col>
@@ -157,7 +173,7 @@ const Calculate = () => {
                     <>
                       <option>Select Appliance</option>
                       {categoryDropData.map((categoryItem) => (
-                        <>
+                        <React.Fragment key={categoryItem}>
                           <option className="categoryOption" disabled>
                             {categoryItem}
                           </option>
@@ -166,7 +182,7 @@ const Calculate = () => {
                               <option key={index}>{item.applianceName}</option>
                             ) : null
                           )}
-                        </>
+                        </React.Fragment>
                       ))}
                     </>
                   </Form.Control>
@@ -222,7 +238,9 @@ const Calculate = () => {
                     type="number"
                     value={appliance.hoursUsed}
                     placeholder="Enter Hours Used"
-                    min={0}
+                    min={0.25}
+                    max={24}
+                    step={0.25}
                     onChange={(e) =>
                       setAppliances((prevState) =>
                         prevState.map((item) =>
@@ -273,6 +291,32 @@ const Calculate = () => {
           Calculate Total Consumption
         </Button>
       </Form>
+      <div className="m-4 p-3">
+        <Collapse in={open}>
+          <div className="p-3 border rounded">
+            <div className="mb-3">
+              <span className="fw-bold">
+                Total Energy Consumed Per Day : &emsp;
+              </span>
+              <span>{finalData?.totalEnergyConsumedPerDay}&nbsp;kWh/day</span>
+            </div>
+            <div className="mb-3">
+              <span className="fw-bold">
+                Total Energy Consumed Per Month : &emsp;
+              </span>
+              <span>
+                {finalData?.totalEnergyConsumedPerMonth}&nbsp;kWh/month
+              </span>
+            </div>
+            <div>
+              <span className="fw-bold">
+                Total Energy Consumed Per Year : &emsp;
+              </span>
+              <span>{finalData?.totalEnergyConsumedPerYear}&nbsp;kWh/year</span>
+            </div>
+          </div>
+        </Collapse>
+      </div>
     </div>
   );
 };

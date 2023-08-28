@@ -6,7 +6,8 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "@/config/firebase";
+import { auth, db } from "@/utils/firebase";
+import { doc, setDoc } from "firebase/firestore";
 // Creating Context
 const AuthContext = createContext({});
 
@@ -22,7 +23,7 @@ export const AuthContextProvider = ({ children }) => {
         setUser({
           uid: user.uid,
           email: user.email,
-          displayName: auth.currentUser.displayName,
+          displayName: user.displayName,
         });
       } else {
         setUser(null);
@@ -34,8 +35,28 @@ export const AuthContextProvider = ({ children }) => {
 
   const signup = async (email, password, displayName) => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      await updateProfile(auth.currentUser, { displayName: displayName });
+      const userData = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      await updateProfile(userData.user, { displayName: displayName });
+      const uid = userData.user.uid;
+      setUser({});
+      try {
+        // Create the energyConsumption collection.
+        const energyConsumptionCollectionRef = doc(
+          db,
+          "users",
+          uid
+        );
+        // Create an empty array for the energy consumption data.
+        const energyConsumptionData = [];
+        // Set the empty array in the subcollection.
+        await setDoc(energyConsumptionCollectionRef, { energyConsumptionData });
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
       alert("Signed Up Successful !!! You are now logged in.");
     } catch (error) {
       console.error(error);

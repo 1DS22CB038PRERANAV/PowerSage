@@ -1,9 +1,22 @@
-import React from 'react'
+import { useAuthContext } from "@/context/AuthContext";
+import { getEnergyConsumptionData } from "@/utils/databaseRelated";
+import { auth } from "@/utils/firebase";
+import React, { useEffect, useState } from "react";
 
 const Graphs = () => {
-  return (
-    <div>Graphs</div>
-  )
-}
+  const [userConsumptionData, setUserConsumptionData] = useState([]);
+  const { user } = useAuthContext();
+  useEffect(() => {
+    const unsubscribe = async () => {
+      if (user) {
+        const data = await getEnergyConsumptionData(auth.currentUser.uid);
+        setUserConsumptionData(data);
+      }
+    };
+    return () => unsubscribe();
+  }, [user]);
 
-export default Graphs
+  return <div><pre><code>{JSON.stringify(userConsumptionData, " ", 2)}</code></pre></div>;
+};
+
+export default Graphs;
