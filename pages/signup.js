@@ -16,7 +16,7 @@ const Signup = () => {
       await signup(emailData,passwordData,displayName);
       route.push("/");
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

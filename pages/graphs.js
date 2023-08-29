@@ -1,3 +1,6 @@
+import CategoryChart from "@/components/charts/CategoryChart";
+import DayChart from "@/components/charts/DayChart";
+import MonthChart from "@/components/charts/MonthChart";
 import { useAuthContext } from "@/context/AuthContext";
 import { getEnergyConsumptionData } from "@/utils/databaseRelated";
 import { auth } from "@/utils/firebase";
@@ -16,7 +19,21 @@ const Graphs = () => {
     return () => unsubscribe();
   }, [user]);
 
-  return <div><pre><code>{JSON.stringify(userConsumptionData, " ", 2)}</code></pre></div>;
+  return (
+    <div className="m-4 d-flex flex-column g-5">
+      <div className="mb-4">
+        <DayChart userConsumptionData={userConsumptionData} />
+      </div>
+      <hr />
+      <div className="mb-4">
+        <MonthChart userConsumptionData={userConsumptionData} />
+      </div>
+      <hr />
+      <div className="mb-4">
+        <CategoryChart userConsumptionData={userConsumptionData} />
+      </div>
+    </div>
+  );
 };
 
 export default Graphs;

@@ -302,7 +302,7 @@ const Calculate = () => {
             </div>
             <div className="mb-3">
               <span className="fw-bold">
-                Total Energy Consumed Per Month : &emsp;
+                Projected Total Energy Consumed Per Month : &emsp;
               </span>
               <span>
                 {finalData?.totalEnergyConsumedPerMonth}&nbsp;kWh/month
@@ -310,7 +310,7 @@ const Calculate = () => {
             </div>
             <div>
               <span className="fw-bold">
-                Total Energy Consumed Per Year : &emsp;
+                Projected Total Energy Consumed Per Year : &emsp;
               </span>
               <span>{finalData?.totalEnergyConsumedPerYear}&nbsp;kWh/year</span>
             </div>

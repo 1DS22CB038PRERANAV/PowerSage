@@ -9,7 +9,7 @@ export const addEnergyConsumptionData = async (uid, energyConsumptionData) => {
     await updateDoc(userSubcollectionRef, {
       energyConsumptionData: arrayUnion(energyConsumptionData),
     });
-    console.log("Successfully added to database");
+    console.info("Successfully added to database");
   } catch (error) {
     console.error("Error adding energy consumption data:", error);
   }
