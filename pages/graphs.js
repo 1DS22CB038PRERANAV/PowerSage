@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 const Graphs = () => {
   const [userConsumptionData, setUserConsumptionData] = useState([]);
   const { user } = useAuthContext();
+
   useEffect(() => {
     const unsubscribe = async () => {
       if (user) {
@@ -16,7 +17,7 @@ const Graphs = () => {
         setUserConsumptionData(data);
       }
     };
-    return () => unsubscribe();
+    unsubscribe();
   }, [user]);
 
   return (
