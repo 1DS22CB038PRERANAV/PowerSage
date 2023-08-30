@@ -6,7 +6,7 @@ import {
   OTHER_APPLIANCES_DATA,
 } from "@/data/appliancesData";
 import React, { useState } from "react";
-import { Button, Col, Collapse, Form, Row } from "react-bootstrap";
+import { Button, Col, Collapse, Container, Form, Row } from "react-bootstrap";
 import { auth } from "@/utils/firebase";
 import { addEnergyConsumptionData } from "@/utils/databaseRelated";
 
@@ -317,6 +317,64 @@ const Calculate = () => {
           </div>
         </Collapse>
       </div>
+      <Container className="m-4 p-3 w-100">
+        <h2>Energy Saving Tips</h2>
+        <Row className="m-4 p-2 g-2">
+          <Col>
+            <p>
+              1. Monitor your energy using habits. Many of us may not think much
+              about how we are using energy. Consciously tracking some of your
+              energy habits over a period of time can help to give you an idea
+              of how you are using your electricity. Changes such as turning off
+              lights or appliances that aren&apos;t being used, using a standing fan
+              instead of the air conditioning when possible, putting on more
+              clothing and using less heating, hand drying or washing smaller
+              loads of laundry/dishes, and more, can have a significant effect
+              on your savings.
+            </p>
+            <p>
+              2. Replace older light bulbs, particularly incandescent light
+              bulbs, with more efficient LED light bulbs. A typical incandescent
+              light bulb requires 75 W while an LED only requires 9 W. LEDs cost
+              more in the short term, but if you have the opportunity to replace
+              any incandescent light bulbs you may have, it will lead to
+              significant future savings.
+            </p>
+            <p>
+              3. If possible, install a programmable thermostat. A large
+              proportion of energy cost is typically due to heating/cooling.
+              Programming a thermostat to adjust the temperature to suit your
+              usage needs can lead to significant savings. It is also not
+              necessary to buy a smart thermostat. If you have access to the
+              thermostat, you can develop a habit of manually adjusting the
+              thermostat to best suit your needs throughout the day.
+            </p>
+            <p>
+              4. Pay attention to energy efficiency when shopping for
+              appliances. Purchasing appliances with energy efficiency in mind
+              can lead to significant savings. Factor this into the cost of the
+              appliance in the long run, not just the initial cost to purchase
+              the appliance.
+            </p>
+            <p>
+              5. Check your windows. Heat loss through windows is common,
+              especially in colder regions. If possible, replace your windows
+              with more energy efficient windows that result in less heat loss.
+              Similarly, if you live in hotter climates, look for windows that
+              can reflect more light and reduce the amount of heat that comes in
+              through your windows. Make use of curtains, blinds, or anything
+              that can obstruct the sunlight during the brighter periods of the
+              day to save on cooling costs.
+            </p>
+            <p>
+              6. Insulate your home as best as possible. Windows, doors, vents,
+              the attic, walls, floors, basement, and crawlspace of your home,
+              if not well-insulated, can lead to higher heating and cooling
+              bills.
+            </p>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
