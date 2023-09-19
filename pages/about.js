@@ -51,7 +51,7 @@ const About = () => {
     </Row>
     <Row>
       <Col md={6}>
-        <h2>Calculation Formulas and Algorithms:</h2>
+        <h2>Calculation Formulas:</h2>
         <p>
           Power Consumption Calculation: The energy consumption of each
           appliance is calculated using the formula: Power Consumption (in
